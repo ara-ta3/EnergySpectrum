@@ -20,3 +20,13 @@ java {
 application {
     mainClass.set("spectrum.energy.MainKt")
 }
+
+tasks.withType<Jar> {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes["Main-Class"] = "spectrum.energy.MainKt"
+    }
+    from({
+        configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
+    })
+}
