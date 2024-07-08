@@ -30,3 +30,7 @@ tasks.withType<Jar> {
         configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
     })
 }
+
+dependencies {
+    implementation("com.microsoft.playwright:playwright:1.38.0")
+}
